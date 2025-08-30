@@ -4,7 +4,6 @@ services:
   minio:
     image: minio/minio:${MINIO_IMAGE_VERSION:-latest}
     container_name: ${MINIO_CONTAINER_NAME:-minio_server}
-    # restart: always
     ports:
       - "${MINIO_API_PORT:-9000}:9000" # API S3
       - "${MINIO_CONSOLE_PORT:-9001}:9001" # Console UI
@@ -14,3 +13,4 @@ services:
     volumes:
       - ${MINIO_DATA_PATH:-./}.minio:/data
     command: server /data --console-address ":9001"
+    # restart: always
